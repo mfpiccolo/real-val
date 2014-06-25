@@ -3,6 +3,8 @@ ruby '2.1.2'
 
 gem 'rails', '~> 4.1.1'
 
+gem 'pg'
+
 gem 'json'
 gem 'thin'
 
@@ -23,7 +25,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'rails_12factor'
 end
 
 gem 'sqlite3', :groups => [:test, :development]
