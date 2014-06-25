@@ -1,0 +1,111 @@
+<% title @property %>
+
+<div class="actions">
+  <%= link_to 'Edit', edit_property_path(@property), :class=>"btn" %>
+  <%= link_to 'Back', properties_path, :class=>"btn" %>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @property.address %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="col-sm-3">
+          Units: <%= @property.units %>
+        </div>
+        <div class="col-sm-3">
+          Listing Price: <%= number_to_currency @property.listing_price %>
+        </div>
+        <div class="col-sm-3">
+          Rent Per Month: <%= number_to_currency @property.rent_per_month %>
+        </div>
+        <div class="col-sm-3">
+          Price Per SQRFT: <%= @property.price_per_sqr_ft %>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Estimated Income/Expenses</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td>Adjusted Rent Per Month</td>
+            <td><%= number_to_currency @property.adj_rent_per_month %></td>
+          </tr>
+          <tr>
+            <td>Expenses</td>
+            <td><%= number_to_currency @property.expenses %></td>
+          </tr>
+          <tr>
+            <td>HOA Fee</td>
+            <td><%= number_to_currency @property.hoa_fee %></td>
+          </tr>
+          <tr>
+            <td>Gross Monthly Income Before Debt</td>
+            <td><%= number_to_currency @property.gross_mthly_inc_before_debt %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">96.5% LTV Info</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td>Debt Service</td>
+            <td><%= number_to_currency @property.debt_service_per_month(0.965) %></td>
+          </tr>
+          <tr>
+            <td>Income Per Month</td>
+            <td><%= number_to_currency @property.income_per_month(0.965) %></td>
+          </tr>
+          <tr>
+            <td>True Earnings Coverage Ratio</td>
+            <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(0.965) >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(0.965), percision: 2) %></td>
+          </tr>
+          <tr>
+            <td>Break Even Value</td>
+            <td><%= number_to_currency @property.break_even_value(0.965) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">80% LTV Info</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Debt Service</td>
+              <td><%= number_to_currency @property.debt_service_per_month(0.8) %></td>
+            </tr>
+            <tr>
+              <td>Income Per Month</td>
+              <td><%= number_to_currency @property.income_per_month(0.8) %></td>
+            </tr>
+            <tr>
+              <td>True Earnings Coverage Ratio</td>
+              <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(0.8) >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(0.8), percision: 2) %></td>
+            </tr>
+            <tr>
+              <td>Break Even Value</td>
+              <td><%= number_to_currency @property.break_even_value(0.8) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div><!-- /.col-sm-4 -->
+</div>
