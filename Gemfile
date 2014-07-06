@@ -16,6 +16,15 @@ gem 'money-rails'
 gem 'bootstrap-sass'
 gem 'turbolinks'
 
+gem 'devise', "~> 3.2.4"
+
+gem 'faraday'
+gem 'hashie'
+gem 'xml-simple'
+gem 'rubillow'
+
+gem 'Indirizzo'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

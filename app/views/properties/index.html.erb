@@ -5,7 +5,7 @@
     <th><%= sortable "listing_price_cents", "Listing Price" %></th><aside class="arrow"></aside>
     <th><%= sortable "price_per_sqr_ft", "Price/SQR FT" %></th><aside class="arrow"></aside>
     <th><%= sortable "rent_per_month_cents", "Rent Per Month" %></th><aside class="arrow"></aside>
-    <th><%= sortable "tecr", "TECR(96.5%)" %></th>
+    <th><%= sortable "tecr", "TECR(#{number_to_percentage(current_user.ltv_1*100, precision: 0)})" %></th>
     <th></th>
   </tr>
   <% @properties.each do |p| %>
@@ -15,7 +15,7 @@
       <td><%= number_to_currency p.listing_price %></td>
       <td><%= p.price_per_sqr_ft %></td>
       <td><%= number_to_currency p.rent_per_month %></td>
-      <td <%= 'bgcolor=#32CD32' if p.true_earnings_coverage_ratio(0.965) >= 1 %> ><%= number_with_precision(p.true_earnings_coverage_ratio(0.965), percision: 2) %></td>
+      <td <%= 'bgcolor=#32CD32' if p.true_earnings_coverage_ratio(current_user.ltv_1) >= 1 %> ><%= number_with_precision(p.true_earnings_coverage_ratio(0.965), percision: 2) %></td>
       <td>
         <%= link_to 'Edit', edit_property_path(p), :class=>"btn" %>
       </td>

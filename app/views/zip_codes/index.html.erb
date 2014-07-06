@@ -1,0 +1,16 @@
+<table class="table">
+  <tr>
+    <th><%= sortable "code" %></th><aside class="arrow"></aside>
+    <th><%= sortable "area" %></th><aside class="arrow"></th>
+    <th></th>
+  </tr>
+  <% @zip_codes.each do |z| %>
+    <tr>
+      <td><%= link_to(z.code, zip_code_path(z)) %></td>
+      <td><%= z.area %></td>
+      <td>
+        <%= link_to 'Edit', edit_zip_code_path(z), :class=>"btn" %>
+      </td>
+    </tr>
+  <% end %>
+</table>

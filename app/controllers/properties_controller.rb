@@ -1,17 +1,18 @@
 class PropertiesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :authenticate_user!
   before_action :find_property, only: [:show, :edit, :update, :destroy]
 
   def new
-    @property = Property.new
+    @property = current_user.properties.build
   end
 
   def index
-    @properties = Property.order(sort_column + " " + sort_direction)
+    @properties = current_user.properties.order(sort_column + " " + sort_direction)
   end
 
   def create
-    @property = Property.new(property_params)
+    @property = current_user.properties.build(property_params)
     if @property.save
       redirect_to property_path(@property)
     else
@@ -20,6 +21,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @zip = ZipCode.find_by(code: @property.zip)
   end
 
   def edit
@@ -44,7 +46,7 @@ class PropertiesController < ApplicationController
   end
 
   def find_property
-    @property = Property.find(params[:id])
+    @property = current_user.properties.find(params[:id])
   end
 
   def sort_column

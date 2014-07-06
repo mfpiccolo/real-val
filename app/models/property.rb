@@ -1,4 +1,6 @@
 class Property < ActiveRecord::Base
+  belongs_to :user
+
   monetize :rent_per_month_cents
   monetize :listing_price_cents
   monetize :hoa_fee_cents
@@ -36,11 +38,22 @@ class Property < ActiveRecord::Base
     listing_price * ((adj_rent_per_month- expenses - hoa_fee)/debt_service_per_month(ltv))
   end
 
+
   private
 
   def update_stats
     self.tecr = true_earnings_coverage_ratio(0.965)
     self.price_per_sqr_ft = listing_price / sqr_ft
+    split_address
+  end
+
+  def split_address
+    split_addy = Indirizzo::Address.new(address)
+    self.number = split_addy.number
+    self.street = split_addy.street.first
+    self.city   = split_addy.city.first
+    self.state  = split_addy.state
+    self.zip    = split_addy.zip
   end
 
 end
