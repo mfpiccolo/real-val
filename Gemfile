@@ -23,7 +23,7 @@ gem 'hashie'
 gem 'xml-simple'
 gem 'rubillow'
 
-gem 'Indirizzo'
+gem 'Indirizzo', require: 'Indirizzo'
 
 group :development do
   gem 'better_errors'
