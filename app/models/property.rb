@@ -48,7 +48,7 @@ class Property < ActiveRecord::Base
   end
 
   def split_address
-    split_addy = Indirizzo::Address.new(address)
+    split_addy = ::Indirizzo::Address.new(address)
     self.number = split_addy.number
     self.street = split_addy.street.first
     self.city   = split_addy.city.first
