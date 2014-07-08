@@ -25,6 +25,8 @@ gem 'rubillow'
 
 gem 'Indirizzo', require: 'indirizzo/address'
 
+gem "threetaps-client", path: "../3taps-Ruby-Client"
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
