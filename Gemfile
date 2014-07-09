@@ -25,7 +25,7 @@ gem 'rubillow'
 
 gem 'Indirizzo', require: 'indirizzo/address'
 
-gem "threetaps-client", git: "git@github.com:mfpiccolo/3taps-Ruby-Client.git"
+gem "threetaps-client", github: "mfpiccolo/3taps-Ruby-Client"
 
 group :development do
   gem 'better_errors'

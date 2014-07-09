@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:mfpiccolo/3taps-Ruby-Client.git
+  remote: git://github.com/mfpiccolo/3taps-Ruby-Client.git
   revision: 363089366600c14f1d75499c71c04e4d05933228
   specs:
     threetaps-client (0.5.0)
