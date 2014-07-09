@@ -19,6 +19,12 @@
             <td>Rent Per Month: <%= number_to_currency @property.rent_per_month %></td>
             <td>Price Per SQRFT: <%= number_to_currency @property.price_per_sqr_ft %></td>
           </tr>
+          <tr>
+            <td>Bedrooms: <%= @property.z_bedrooms %></td>
+            <td>Bathrooms: <%= @property.z_bathrooms %></td>
+            <td>Year Built: <%= @property.z_year_built %></td>
+            <td>Square Feet: <%= @property.z_finished_square_feet %></td>
+          </tr>
           <% if @zip.present? %>
             <tr>
               <td>Zip Code Z-Value: <%= number_to_currency @zip.z_index_value %></td>
@@ -53,6 +59,33 @@
           <tr>
             <td>Gross Monthly Income Before Debt</td>
             <td><%= number_to_currency @property.gross_mthly_inc_before_debt %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Rent (Entered: <%= number_to_currency @property.rent_per_month %>)</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr>
+            <td>Z-Rent</td>
+            <td><%= number_to_currency @property.z_rent %></td>
+          </tr>
+          <tr>
+            <td>Z-Rent Range</td>
+            <td><%= "$#{@property.z_rent_low}-#{@property.z_rent_high}" %></td>
+          </tr>
+          <tr>
+            <td>Z-Rent Change</td>
+            <td><%= number_to_currency @property.z_rent_change %></td>
+          </tr>
+          <tr>
+            <td>Craigslist Rent Estimate</td>
+            <td>Coming Soon</td>
           </tr>
         </table>
       </div>

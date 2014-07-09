@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704173156) do
+ActiveRecord::Schema.define(version: 20140708075033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,23 +19,54 @@ ActiveRecord::Schema.define(version: 20140704173156) do
   create_table "properties", force: true do |t|
     t.string   "address"
     t.integer  "units"
-    t.integer  "listing_price_cents",     default: 0,     null: false
-    t.string   "listing_price_currency",  default: "USD", null: false
-    t.integer  "rent_per_month_cents",    default: 0,     null: false
-    t.string   "rent_per_month_currency", default: "USD", null: false
+    t.integer  "listing_price_cents",        default: 0,     null: false
+    t.string   "listing_price_currency",     default: "USD", null: false
+    t.integer  "rent_per_month_cents",       default: 0,     null: false
+    t.string   "rent_per_month_currency",    default: "USD", null: false
     t.float    "tecr"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sqr_ft"
     t.float    "price_per_sqr_ft"
-    t.integer  "hoa_fee_cents",           default: 0,     null: false
-    t.string   "hoa_fee_currency",        default: "USD", null: false
+    t.integer  "hoa_fee_cents",              default: 0,     null: false
+    t.string   "hoa_fee_currency",           default: "USD", null: false
     t.integer  "user_id"
     t.string   "number"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.integer  "z_bedrooms"
+    t.float    "z_bathrooms"
+    t.integer  "z_tax_assessment_cents",     default: 0,     null: false
+    t.string   "z_tax_assessment_currency",  default: "USD", null: false
+    t.string   "z_tax_assessment_year"
+    t.string   "z_year_built"
+    t.date     "z_last_sold_on"
+    t.integer  "z_last_sold_price_cents",    default: 0,     null: false
+    t.string   "z_last_sold_price_currency", default: "USD", null: false
+    t.string   "z_lot_size_square_feet"
+    t.string   "z_finished_square_feet"
+    t.integer  "z_price_cents",              default: 0,     null: false
+    t.string   "z_price_currency",           default: "USD", null: false
+    t.integer  "z_price_high_cents",         default: 0,     null: false
+    t.string   "z_price_high_currency",      default: "USD", null: false
+    t.integer  "z_price_low_cents",          default: 0,     null: false
+    t.string   "z_price_low_currency",       default: "USD", null: false
+    t.integer  "z_price_change_cents",       default: 0,     null: false
+    t.string   "z_price_change_currency",    default: "USD", null: false
+    t.string   "z_price_change_duration"
+    t.integer  "zpid"
+    t.integer  "z_rent_cents",               default: 0,     null: false
+    t.string   "z_rent_currency",            default: "USD", null: false
+    t.integer  "z_rent_low_cents",           default: 0,     null: false
+    t.string   "z_rent_low_currency",        default: "USD", null: false
+    t.integer  "z_rent_high_cents",          default: 0,     null: false
+    t.string   "z_rent_high_currency",       default: "USD", null: false
+    t.date     "z_rent_updated_on"
+    t.integer  "z_rent_change_cents",        default: 0,     null: false
+    t.string   "z_rent_change_currency",     default: "USD", null: false
+    t.string   "z_rent_change_duration"
   end
 
   create_table "users", force: true do |t|
