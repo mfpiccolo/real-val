@@ -1,4 +1,10 @@
+require "dmg_decimal"
+
 class Property < ActiveRecord::Base
+  versioned
+
+  has_many :activities, as: :trackable
+
   belongs_to :user
 
   monetize :rent_per_month_cents
@@ -41,7 +47,7 @@ class Property < ActiveRecord::Base
   end
 
   def true_earnings_coverage_ratio(ltv)
-    adj_rent_per_month / (debt_service_per_month(ltv) + expenses + hoa_fee)
+    Dmg::Decimal.real(adj_rent_per_month / (debt_service_per_month(ltv) + expenses + hoa_fee), precision: 6, scale: 4)
   end
 
   def break_even_value(ltv)

@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+  include ApplicationHelper
+
   helper_method :sort_column, :sort_direction
   before_action :authenticate_user!
   before_action :find_property, only: [:show, :edit, :update, :destroy]
@@ -14,6 +16,7 @@ class PropertiesController < ApplicationController
   def create
     @property = current_user.properties.build(property_params)
     if @property.save
+      track_activity(@property)
       redirect_to property_path(@property)
     else
       render :new
@@ -29,6 +32,7 @@ class PropertiesController < ApplicationController
 
   def update
     if @property.update_attributes(property_params)
+      track_activity(@property, :tecr)
       redirect_to property_path(@property)
     else
       render :new

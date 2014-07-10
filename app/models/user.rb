@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :properties
   has_many :zip_codes
+  has_many :activities
 end
 

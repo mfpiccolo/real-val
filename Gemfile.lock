@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/houstonmc/vestal_versions.git
+  revision: a3bec7ce5e4238b146dfa66ab918b3d78051a164
+  specs:
+    vestal_versions (2.0.0)
+      activerecord (>= 3, < 5)
+      activesupport (>= 3, < 5)
+
+GIT
   remote: git://github.com/mfpiccolo/3taps-Ruby-Client.git
   revision: 363089366600c14f1d75499c71c04e4d05933228
   specs:
@@ -198,4 +206,5 @@ DEPENDENCIES
   threetaps-client!
   turbolinks
   uglifier
+  vestal_versions!
   xml-simple

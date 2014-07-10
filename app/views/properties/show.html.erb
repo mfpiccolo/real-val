@@ -6,119 +6,120 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= @property.address %></h3>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <tr>
-            <td>Units: <%= @property.units %></td>
-            <td>Listing Price: <%= number_to_currency @property.listing_price %></td>
-            <td>Rent Per Month: <%= number_to_currency @property.rent_per_month %></td>
-            <td>Price Per SQRFT: <%= number_to_currency @property.price_per_sqr_ft %></td>
-          </tr>
-          <tr>
-            <td>Bedrooms: <%= @property.z_bedrooms %></td>
-            <td>Bathrooms: <%= @property.z_bathrooms %></td>
-            <td>Year Built: <%= @property.z_year_built %></td>
-            <td>Square Feet: <%= @property.z_finished_square_feet %></td>
-          </tr>
-          <% if @zip.present? %>
+  <div class="col-sm-7">
+    <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @property.address %></h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
             <tr>
-              <td>Zip Code Z-Value: <%= number_to_currency @zip.z_index_value %></td>
-              <td <%= (@property.listing_price - @zip.z_index_value >= 0) ? 'bgcolor=#FF0000' : 'bgcolor=#32CD32' %>>Z-Value Dif: <%= number_to_currency(@property.listing_price - @zip.z_index_value) %></td>
-              <td <%= (@property.listing_price - @zip.z_index_value >= 0) ? 'bgcolor=#FF0000' : 'bgcolor=#32CD32' %>>Z-Value Ratio: <%= number_with_precision(@property.listing_price / @zip.z_index_value, percision: 2) %></td>
-              <td></td>
+              <td>Units: <%= @property.units %></td>
+              <td>Listing Price: <%= number_to_currency @property.listing_price %></td>
+              <td>Rent Per Month: <%= number_to_currency @property.rent_per_month %></td>
+              <td>Price Per SQRFT: <%= number_to_currency @property.price_per_sqr_ft %></td>
             </tr>
-          <% end %>
-        </table>
+            <tr>
+              <td>Bedrooms: <%= @property.z_bedrooms %></td>
+              <td>Bathrooms: <%= @property.z_bathrooms %></td>
+              <td>Year Built: <%= @property.z_year_built %></td>
+              <td>Square Feet: <%= @property.z_finished_square_feet %></td>
+            </tr>
+            <% if @zip.present? %>
+              <tr>
+                <td>Zip Code Z-Value: <%= number_to_currency @zip.z_index_value %></td>
+                <td <%= (@property.listing_price - @zip.z_index_value >= 0) ? 'bgcolor=#FF0000' : 'bgcolor=#32CD32' %>>Z-Value Dif: <%= number_to_currency(@property.listing_price - @zip.z_index_value) %></td>
+                <td <%= (@property.listing_price - @zip.z_index_value >= 0) ? 'bgcolor=#FF0000' : 'bgcolor=#32CD32' %>>Z-Value Ratio: <%= number_with_precision(@property.listing_price / @zip.z_index_value, percision: 2) %></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
-    </div>
-  </div><!-- /.col-sm-4 -->
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Estimated Income/Expenses</h3>
+    </div><!-- /.col-sm-6 -->
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Estimated Income/Expenses</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Adjusted Rent Per Month</td>
+              <td><%= number_to_currency @property.adj_rent_per_month %></td>
+            </tr>
+            <tr>
+              <td>Expenses</td>
+              <td><%= number_to_currency @property.expenses %></td>
+            </tr>
+            <tr>
+              <td>HOA Fee</td>
+              <td><%= number_to_currency @property.hoa_fee %></td>
+            </tr>
+            <tr>
+              <td>Gross Monthly Income Before Debt</td>
+              <td><%= number_to_currency @property.gross_mthly_inc_before_debt %></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="panel-body">
-        <table class="table">
-          <tr>
-            <td>Adjusted Rent Per Month</td>
-            <td><%= number_to_currency @property.adj_rent_per_month %></td>
-          </tr>
-          <tr>
-            <td>Expenses</td>
-            <td><%= number_to_currency @property.expenses %></td>
-          </tr>
-          <tr>
-            <td>HOA Fee</td>
-            <td><%= number_to_currency @property.hoa_fee %></td>
-          </tr>
-          <tr>
-            <td>Gross Monthly Income Before Debt</td>
-            <td><%= number_to_currency @property.gross_mthly_inc_before_debt %></td>
-          </tr>
-        </table>
+    </div><!-- /.col-sm-6 -->
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Rent (Entered: <%= number_to_currency @property.rent_per_month %>)</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Z-Rent</td>
+              <td><%= number_to_currency @property.z_rent %></td>
+            </tr>
+            <tr>
+              <td>Z-Rent Range</td>
+              <td><%= "$#{@property.z_rent_low}-#{@property.z_rent_high}" %></td>
+            </tr>
+            <tr>
+              <td>Z-Rent Change</td>
+              <td><%= number_to_currency @property.z_rent_change %></td>
+            </tr>
+            <tr>
+              <td>Craigslist Rent Estimate</td>
+              <td>Coming Soon</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-  </div><!-- /.col-sm-4 -->
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Rent (Entered: <%= number_to_currency @property.rent_per_month %>)</h3>
+    </div><!-- /.col-sm-6 -->
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= number_to_percentage(current_user.ltv_1*100, precision: 0) %> LTV Info (<%= number_to_currency @property.listing_price * (1-current_user.ltv_1), precision: 0 %> Down)</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table">
+            <tr>
+              <td>Debt Service</td>
+              <td><%= number_to_currency @property.debt_service_per_month(current_user.ltv_1) %></td>
+            </tr>
+            <tr>
+              <td>Income Per Month</td>
+              <td><%= number_to_currency @property.income_per_month(current_user.ltv_1) %></td>
+            </tr>
+            <tr>
+              <td>True Earnings Coverage Ratio</td>
+              <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(current_user.ltv_1).to_f >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(current_user.ltv_1), percision: 2) %></td>
+            </tr>
+            <tr>
+              <td>Break Even Value</td>
+              <td><%= number_to_currency @property.break_even_value(current_user.ltv_1).to_f %></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="panel-body">
-        <table class="table">
-          <tr>
-            <td>Z-Rent</td>
-            <td><%= number_to_currency @property.z_rent %></td>
-          </tr>
-          <tr>
-            <td>Z-Rent Range</td>
-            <td><%= "$#{@property.z_rent_low}-#{@property.z_rent_high}" %></td>
-          </tr>
-          <tr>
-            <td>Z-Rent Change</td>
-            <td><%= number_to_currency @property.z_rent_change %></td>
-          </tr>
-          <tr>
-            <td>Craigslist Rent Estimate</td>
-            <td>Coming Soon</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div><!-- /.col-sm-4 -->
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= number_to_percentage(current_user.ltv_1*100, precision: 0) %> LTV Info (<%= number_to_currency @property.listing_price * (1-current_user.ltv_1), precision: 0 %> Down)</h3>
-      </div>
-      <div class="panel-body">
-        <table class="table">
-          <tr>
-            <td>Debt Service</td>
-            <td><%= number_to_currency @property.debt_service_per_month(current_user.ltv_1) %></td>
-          </tr>
-          <tr>
-            <td>Income Per Month</td>
-            <td><%= number_to_currency @property.income_per_month(current_user.ltv_1) %></td>
-          </tr>
-          <tr>
-            <td>True Earnings Coverage Ratio</td>
-            <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(current_user.ltv_1) >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(current_user.ltv_1), percision: 2) %></td>
-          </tr>
-          <tr>
-            <td>Break Even Value</td>
-            <td><%= number_to_currency @property.break_even_value(current_user.ltv_1) %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div><!-- /.col-sm-4 -->
-  <div class="col-sm-4">
+    </div><!-- /.col-sm-6 -->
+    <div class="col-sm-6">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title"><%= number_to_percentage(current_user.ltv_2*100, precision: 0) %> LTV Info (<%= number_to_currency @property.listing_price * (1-current_user.ltv_2), precision: 0 %> Down)</h3>
@@ -135,7 +136,7 @@
             </tr>
             <tr>
               <td>True Earnings Coverage Ratio</td>
-              <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(current_user.ltv_2) >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(current_user.ltv_2), percision: 2) %></td>
+              <td <%= 'bgcolor=#32CD32' if @property.true_earnings_coverage_ratio(current_user.ltv_2).to_f >= 1 %> ><%= number_with_precision(@property.true_earnings_coverage_ratio(current_user.ltv_2), percision: 2) %></td>
             </tr>
             <tr>
               <td>Break Even Value</td>
@@ -144,5 +145,25 @@
           </table>
         </div>
       </div>
-    </div><!-- /.col-sm-4 -->
+    </div><!-- /.col-sm-6 -->
+  </div>
+  <div class="col-sm-5">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Activity Feed</h3>
+    </div>
+    <div class="panel-body">
+      <div>
+        <% @property.activities.each do |a| %>
+          <div>
+            <td><%= a.created_at.strftime("%m/%d/%Y") + " - " + a.user.email %></td>
+            <% a.messages.each do |m| %>
+              <div class="indent"><%= m %></div>
+            <% end %>
+          </div>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  </div>
 </div>

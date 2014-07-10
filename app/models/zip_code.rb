@@ -1,4 +1,6 @@
 class ZipCode < ActiveRecord::Base
+  versioned
+
   belongs_to :user
 
   monetize :z_index_value_cents
